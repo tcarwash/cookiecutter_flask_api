@@ -1,0 +1,41 @@
+services:
+  db:
+    image: postgres
+    restart: always
+    volumes:
+      - ./data/db:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=${PG_DB}
+      - POSTGRES_USER=${PG_USER}
+      - POSTGRES_PASSWORD=${PG_PW}
+    networks:
+      - backend
+  web:
+    build: .
+    command: "/bin/sh /entrypoint.sh"
+    restart: always
+    volumes:
+      - ./app:/app
+    environment:
+      - POSTGRES_NAME=${PG_DB}
+      - POSTGRES_USER=${PG_USER}
+      - POSTGRES_PASSWORD=${PG_PW}
+      - SECRET_KEY=${SECRET_KEY}
+    depends_on:
+      - db
+    networks:
+      - frontend
+      - backend
+  proxy:
+    restart: always
+    depends_on:
+      - web
+    build: ./nginx
+    ports:
+      - 5001:80
+    networks:
+      - frontend
+
+networks:
+  backend:
+  frontend:

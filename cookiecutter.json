@@ -1,0 +1,5 @@
+{
+  "appname": "app",
+  "db_user": "postgres",
+  "db_pass": "SuperS3cret"
+}
