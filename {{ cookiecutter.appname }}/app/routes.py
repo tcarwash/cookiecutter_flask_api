@@ -17,7 +17,7 @@ def get_thing(id):
 @body(ThingSchema)
 @response(ThingSchema)
 def create_thing(new_thing):
-    """Get a thing from the database"""
+    """Create a thing in the database"""
     db.session.add(new_thing)
     db.session.commit()
 
