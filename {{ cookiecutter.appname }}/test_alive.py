@@ -11,7 +11,7 @@ def main():
     while True:
         try:
             conn = psycopg2.connect(
-                f"host=db dbname={DB_NAME} password={DB_PASS} user={DB_PASS}"
+                f"host=db dbname={DB_NAME} password={DB_PASS} user={DB_USER}"
             )
             conn.close()
             return 0
