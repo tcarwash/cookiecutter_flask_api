@@ -1,5 +1,5 @@
 {
-  "appname": "app",
+  "appname": "flaskAPI",
   "db_user": "postgres",
   "db_pass": "SuperS3cret"
 }
