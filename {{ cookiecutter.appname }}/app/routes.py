@@ -7,7 +7,7 @@ from app.models import Thing, User
 ### Authentication
 
 
-@app.route("/api/users/", methods=["POST"])
+@app.route("/api/users", methods=["POST"])
 @body(new_user_schema)
 @response(user_schema, 201)
 def register(kwargs):
@@ -18,7 +18,7 @@ def register(kwargs):
     return new_user
 
 
-@app.route("/api/users/get-auth-token/", methods=["POST"])
+@app.route("/api/users/get-auth-token", methods=["POST"])
 @authenticate(basic_auth)
 @response(token_schema)
 @other_responses({401: "Invalid username or password"})
